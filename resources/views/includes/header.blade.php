@@ -14,6 +14,9 @@
     <div class="profile">
         <ul class="navbar-nav">
             <li class="nav-item">
+                <a href="{{ route('basket') }}" class="nav-link"><i class="bi bi-basket"></i> Корзина</a>
+            </li>
+            <li class="nav-item">
                 <a href="#" class="nav-link">Войти</a>
             </li>
             <li class="nav-item">
