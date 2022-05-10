@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BasketController extends Controller
 {
@@ -12,6 +13,10 @@ class BasketController extends Controller
         $order_id = session('order_id');
         if (!is_null($order_id)) {
             $order = Order::find($order_id);
+            if(Auth::check() and !is_null($order->user_id)) {
+                $order->user_id = Auth::id();
+                $order->save();
+            }
             return view('basket', compact('order'));
         }
         else {
@@ -45,6 +50,7 @@ class BasketController extends Controller
         } else {
             $order->products()->attach($product);
         }
+
         $product_name = Product::where('id', $product)->first()->name;
         session()->flash('productAdded', "Добавлен товар $product_name");
         return redirect()->route('basket');

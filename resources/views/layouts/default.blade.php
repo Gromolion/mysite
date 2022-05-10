@@ -15,5 +15,6 @@
         </div>
 
         @include('includes.footer')
+        <script src="/js/bootstrap.js"></script>
     </body>
 </html>

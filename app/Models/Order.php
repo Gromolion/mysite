@@ -11,6 +11,12 @@ class Order extends Model
     {
         return $this->belongsToMany(Product::class)->withPivot('count')->withTimestamps();
     }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id')->first();
+    }
+
     public function cost()
     {
         $sum = 0;
@@ -25,6 +31,7 @@ class Order extends Model
             $this->status = 1;
             $this->name = $name;
             $this->phone = $phone;
+            $this->cost = $this->cost();
             $this->save();
             session()->forget('order_id');
             return True;
