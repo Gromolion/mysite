@@ -21,7 +21,7 @@ class OrderController extends Controller
 
     public function destroy(Order $order)
     {
-        Order::destroy($order);
+        $order->delete();
         return redirect()->route('orders.index');
     }
 }

@@ -28,7 +28,8 @@
                 <td>{{ $order->updated_at->format('H:i d/m/Y') }}</td>
                 <td>{{ $order->cost() }}₽</td>
                 <td>
-                    <form action="{{ route('orders.destroy', $order) }}" method="post">
+                    <form action="{{ route('orders.destroy', $order) }}" method="POST">
+                        @method('DELETE')
                         @csrf
                         <a href="{{ route('orders.show', $order) }}" type="button" class="btn btn-success"><i class="bi bi-search"></i></a>
                         <button type="submit" class="btn btn-danger"

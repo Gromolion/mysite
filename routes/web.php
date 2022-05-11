@@ -20,16 +20,13 @@ Route::group([
     'middleware' => 'auth'
 ], function() {
     Route::group([
-        'prefix' => 'person',
-        'namespace' => 'Person'
+        'prefix' => 'person'
     ], function() {
-        Route::get('orders', [PersonController::class, 'orders']);
-        Route::get('orders/order', [PersonController::class, 'order']);
+        Route::get('orders', [PersonController::class, 'orders'])->name('person.orders');
     });
     Route::group([
         'middleware' => 'is_admin',
-        'prefix' => 'admin',
-        'namespace' => 'Admin'
+        'prefix' => 'admin'
     ], function() {
         Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
         Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');

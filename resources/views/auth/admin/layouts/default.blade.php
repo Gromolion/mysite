@@ -29,18 +29,16 @@
             </div>
             <div class="profile">
                 <ul class="navbar-nav">
-                    @if (Auth::user()->isAdmin())
+                    @admin
                         <li class="nav-item"><a href="{{ route('orders.index') }}" class="nav-link">Админ-панель</a></li>
-                    @endif
-                    <li class="nav-item">
-                        <a href="{{ route('basket') }}" class="nav-link"><i class="bi bi-basket"></i> Корзина</a>
-                    </li>
+                    @endadmin
                     <li class="nav-item dropdown">
                         <button id="navbarDropdown" class="btn nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </button>
 
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a href="{{ route('person.orders') }}" class="dropdown-item">Мои заказы</a></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}">Выйти</a></li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
@@ -54,5 +52,6 @@
     <div class="container mt-5">
         @yield('content')
     </div>
+    <script src="/js/bootstrap.js"></script>
 </body>
 </html>

@@ -27,9 +27,9 @@
                         </li>
                     @endif
                 @else
-                    @if (Auth::user()->isAdmin())
+                    @admin
                         <li class="nav-item"><a href="{{ route('orders.index') }}" class="nav-link">Админ-панель</a></li>
-                    @endif
+                    @endadmin
                     <li class="nav-item">
                         <a href="{{ route('basket') }}" class="nav-link"><i class="bi bi-basket"></i> Корзина</a>
                     </li>
@@ -39,14 +39,15 @@
                         </button>
 
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a href="{{ route('person.orders') }}" class="dropdown-item">Мои заказы</a></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}">Выйти</a></li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
+                        </ul>
+                    </li>
+                @endguest
+            </ul>
         </div>
-        </li>
-        @endguest
-        </ul>
-    </div>
     </div>
 </nav>
