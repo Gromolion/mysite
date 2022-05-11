@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BasketController;
+use App\Http\Controllers\Person\PersonController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
@@ -18,15 +20,22 @@ Route::group([
     'middleware' => 'auth'
 ], function() {
     Route::group([
-        'middleware' => 'is_admin',
-        'prefix' => 'admin'
+        'prefix' => 'person',
+        'namespace' => 'Person'
     ], function() {
-        Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-        Route::get('/orders/show/{id}', [OrderController::class, 'show'])->name('orders.show');
-        Route::get('/orders/edit/{id}', [OrderController::class, 'edit'])->name('orders.edit');
-        Route::post('/orders/edit-accept/{id}', [OrderController::class, 'editAccept'])->name('orders.edit-accept');
-        Route::post('/orders/delete/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
+        Route::get('orders', [PersonController::class, 'orders']);
+        Route::get('orders/order', [PersonController::class, 'order']);
+    });
+    Route::group([
+        'middleware' => 'is_admin',
+        'prefix' => 'admin',
+        'namespace' => 'Admin'
+    ], function() {
+        Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+        Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+        Route::delete('orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
         Route::resource('categories', CategoryController::class);
+        Route::resource('products', ProductController::class);
     });
 });
 

@@ -12,7 +12,7 @@
     @else
         <h1>Добавить категорию</h1>
     @endisset
-    <form method="post"
+    <form method="post" enctype="multipart/form-data"
           @isset($category)
               action="{{ route('categories.update', $category) }}"
           @else
@@ -27,8 +27,11 @@
                 <label for="code">Код:</label>
             </div>
             <div class="col-6">
+                @error('code')
+                <div class="alert alert-danger" role="alert">{{ $message }}</div>
+                @enderror
                 <input type="text" id="code" name="code" class="form-control"
-                       @isset($category)value="{{ $category->code }}"@endisset>
+                       value="{{ old('code', isset($category) ? $category->code : null)}}">
             </div>
         </div>
         <br>
@@ -37,8 +40,11 @@
                 <label for="name">Название:</label>
             </div>
             <div class="col-6">
+                @error('name')
+                <div class="alert alert-danger" role="alert">{{ $message }}</div>
+                @enderror
                 <input type="text" id="name" name="name" class="form-control"
-                       @isset($category)value="{{ $category->name }}"@endisset>
+                       value="{{ old('name', isset($category) ? $category->name : null)}}">
             </div>
         </div>
         <br>
@@ -47,7 +53,10 @@
                 <label for="description">Описание:</label>
             </div>
             <div class="col-6">
-                <textarea name="description" id="description" cols="60" rows="5">@isset($category){{ $category->description }}@endisset</textarea>
+                @error('description')
+                <div class="alert alert-danger" role="alert">{{ $message }}</div>
+                @enderror
+                <textarea name="description" id="description" cols="50" rows="5">{{ old('description', isset($category) ? $category->description : null)}}</textarea>
             </div>
         </div>
         <br>

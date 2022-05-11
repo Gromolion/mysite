@@ -14,7 +14,7 @@
             <div class="card m-3 col-3 p-3">
                 <div class="panel-body mx-auto">
                     <a class="text-decoration-none link-dark" href="{{ route('product', [$category->code, $product->code]) }}">
-                        <img class="card-img-top col-12" width="278" height="278" src="{{ $product->image }}" alt="">
+                        <img class="card-img-top col-12" width="278" height="278" src="{{ Storage::url($product->image) }}" alt="">
                         <h3 class="card-title text-center">{{ $product->name }}</h3>
                     </a>
                     <p class="text-center fs-4 ">{{ $product->price }}₽</p>

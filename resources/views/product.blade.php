@@ -14,7 +14,7 @@
         </ol>
     </nav>
     <div class="row">
-        <img class="img-thumbnail col-4" src="{{ $product->image }}" alt="">
+        <img class="img-thumbnail col-4" src="{{ Storage::url($product->image) }}" alt="">
         <div class="col-8">
             <h1 class="text-center mb-3">{{ $product->name }}</h1>
             <div class="row mx-2 justify-content-center">

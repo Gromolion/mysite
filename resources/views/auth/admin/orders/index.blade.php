@@ -28,15 +28,12 @@
                 <td>{{ $order->updated_at->format('H:i d/m/Y') }}</td>
                 <td>{{ $order->cost() }}₽</td>
                 <td>
-                    <div class="btn-group">
+                    <form action="{{ route('orders.destroy', $order) }}" method="post">
+                        @csrf
                         <a href="{{ route('orders.show', $order) }}" type="button" class="btn btn-success"><i class="bi bi-search"></i></a>
-                        <a href="{{ route('orders.edit', $order) }}" type="button" class="btn btn-success"><i class="bi bi-pencil"></i></a>
-                        <form action="{{ route('orders.destroy', $order) }}" method="post">
-                            @csrf
-                            <button type="submit" class="btn btn-danger"
-                                    href=""><span class="bi bi-trash" aria-hidden="true"></span></button>
-                        </form>
-                    </div>
+                        <button type="submit" class="btn btn-danger"
+                                href=""><span class="bi bi-trash" aria-hidden="true"></span></button>
+                    </form>
                 </td>
             </tr>
         @endforeach
