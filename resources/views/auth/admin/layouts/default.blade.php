@@ -29,9 +29,7 @@
             </div>
             <div class="profile">
                 <ul class="navbar-nav">
-                    @admin
-                        <li class="nav-item"><a href="{{ route('orders.index') }}" class="nav-link">Админ-панель</a></li>
-                    @endadmin
+                    <li class="nav-item"><a href="{{ route('reset') }}" class="nav-link">Сбросить БД</a></li>
                     <li class="nav-item dropdown">
                         <button id="navbarDropdown" class="btn nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
@@ -39,6 +37,7 @@
 
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li><a href="{{ route('person.orders') }}" class="dropdown-item">Мои заказы</a></li>
+                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}">Выйти</a></li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf

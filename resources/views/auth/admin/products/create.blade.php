@@ -28,7 +28,7 @@
             </div>
             <div class="col-6">
                 @error('code')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <input type="text" id="code" name="code" class="form-control"
                        value="{{ old('code', isset($product) ? $product->code : null)}}">
@@ -61,8 +61,8 @@
                         <option value="{{ $category->id }}"
                                 @isset($product)
                                     @if($category->id === $product->category->id) selected
-                                    @endif
-                                @endisset
+                            @endif
+                            @endisset
                         >{{ $category->name }}</option>
                     @endforeach
                 </select>
@@ -77,7 +77,8 @@
                 @error('description')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-                <textarea name="description" id="description" cols="50" rows="5">{{ old('description', isset($product) ? $product->description : null)}}</textarea>
+                <textarea name="description" id="description" cols="50"
+                          rows="5">{{ old('description', isset($product) ? $product->description : null)}}</textarea>
             </div>
         </div>
         <br>
@@ -103,6 +104,24 @@
             </div>
         </div>
         <br>
+        @foreach([
+            'hit' => 'Хит',
+            'new' => 'Новый',
+            'recommend' => 'Рекомендуемый'
+        ] as $field => $title)
+            <div class="row align-items-center">
+                <div class="col-2">
+                    <label for="{{ $field }}" class="form-check-label">{{ $title }}:</label>
+                </div>
+                <div class="col-6">
+                    <input type="checkbox" class="form-check-input" id="{{ $field }}" name="{{ $field }}"
+                        @if(isset($product) && $product->$field === 1)
+                            checked="checked"
+                        @endif>
+                </div>
+            </div>
+            <br>
+        @endforeach
         <button class="btn btn-success" type="submit">Сохранить</button>
     </form>
 @endsection

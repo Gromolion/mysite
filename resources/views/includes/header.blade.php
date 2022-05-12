@@ -40,6 +40,7 @@
 
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li><a href="{{ route('person.orders') }}" class="dropdown-item">Мои заказы</a></li>
+                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}">Выйти</a></li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf

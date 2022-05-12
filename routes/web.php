@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\BasketController;
-use App\Http\Controllers\Person\PersonController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\BasketController;
+use App\Http\Controllers\Admin\ResetController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Person\PersonController;
+use App\Http\Controllers\Admin\CategoryController;
 
 Auth::routes([
     'confirm' => false,
@@ -33,6 +34,7 @@ Route::group([
         Route::delete('orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
         Route::resource('categories', CategoryController::class);
         Route::resource('products', ProductController::class);
+        Route::get('reset', [ResetController::class, 'reset'])->name('reset');
     });
 });
 
